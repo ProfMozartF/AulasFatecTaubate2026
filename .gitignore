@@ -1,3 +1,35 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+# Windows temp
+*.tmp
+*.temp
+~$*
+
+# IDEs e editores
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+_build/
+build/
+Debug/
+Release/
+RelWithDebInfo/
+MinSizeRel/
+
 # Prerequisites
 *.d
 
