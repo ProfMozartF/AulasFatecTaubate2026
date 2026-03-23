@@ -29,6 +29,8 @@ Debug/
 Release/
 RelWithDebInfo/
 MinSizeRel/
+*/.metadata/
+*.cmake
 
 # Prerequisites
 *.d
@@ -85,3 +87,5 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+*/ProjetosSTM32/.metadata

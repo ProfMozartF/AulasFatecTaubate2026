@@ -98,7 +98,17 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, 1);
-	  HAL_Delay(250);
+	  HAL_Delay(50);
+	  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, 0);
+	  HAL_Delay(50);
+
+     HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, 1);
+	  HAL_Delay(50);
+	  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, 0);
+	  HAL_Delay(50);
+
+    HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, 1);
+	  HAL_Delay(50);
 	  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, 0);
 	  HAL_Delay(250);
   }
