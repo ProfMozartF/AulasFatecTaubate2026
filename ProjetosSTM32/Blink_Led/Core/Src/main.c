@@ -101,6 +101,11 @@ int main(void)
 	  HAL_Delay(100);
 	  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, RESET);
 	  HAL_Delay(100);
+	  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, SET);
+	  HAL_Delay(500);
+	  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, RESET);
+	  HAL_Delay(500);
+
   }
   /* USER CODE END 3 */
 }

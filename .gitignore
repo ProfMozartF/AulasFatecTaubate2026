@@ -1,85 +1,111 @@
-/ProjetosSTM32/.metadata/
-/.metadata/
-
-# Sistema
+# =========================
+# Sistema operacional
+# =========================
 .DS_Store
 Thumbs.db
 desktop.ini
 ehthumbs.db
-# Windows temp
+
+# Temporários
 *.tmp
 *.temp
 ~$*
 
+# =========================
 # IDEs e editores
+# =========================
 .vscode/
 .idea/
+
+# Eclipse / STM32CubeIDE
+.metadata/
+*/.metadata/
+.settings/
+*.project
+*.cproject
+
+Debug/
+*/Debug/
+**/Debug/
+
+# Arquivos de usuário
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
-*.VC.db
-*.VC.opendb
 
-# CMake
+# =========================
+# Build (CMake / GCC / STM32)
+# =========================
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
 Makefile
+
 _build/
 build/
 Debug/
 Release/
 RelWithDebInfo/
 MinSizeRel/
-*/.metadata/
+
 *.cmake
 
-# Prerequisites
+# =========================
+# Dependências / compilação
+# =========================
 *.d
 
-# Object files
+# Objetos
 *.o
-*.ko
 *.obj
+*.ko
 *.elf
 
-# Linker output
-*.ilk
+# Binários STM32
+*.hex
+*.bin
+
+# Linker / mapa
 *.map
+*.ilk
 *.exp
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
+# =========================
+# Bibliotecas
+# =========================
 *.a
+*.lib
 *.la
 *.lo
 
-# Shared objects (inc. Windows DLLs)
+# =========================
+# Shared libs
+# =========================
 *.dll
 *.so
 *.so.*
 *.dylib
 
-# Executables
+# =========================
+# Executáveis
+# =========================
 *.exe
 *.out
 *.app
-*.i*86
-*.x86_64
-*.hex
 
-# Debug files
+# =========================
+# Debug
+# =========================
 *.dSYM/
 *.su
 *.idb
 *.pdb
+*.dwo
 
-# Kernel Module Compile Results
+# =========================
+# Kernel / módulos
+# =========================
 *.mod*
 *.cmd
 .tmp_versions/
@@ -88,7 +114,26 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# debug information files
-*.dwo
+# =========================
+# STM32CubeIDE específicos
+# =========================
 
+# Pasta de metadata do workspace (IMPORTANTE)
+.metadata/
+*/.metadata/
 
+# Pastas específicas de projeto STM32
+/ProjetosSTM32/.metadata/
+
+# Logs e temporários
+*.log
+
+# =========================
+# OPCIONAL (recomendado para aula)
+# =========================
+
+# Ignorar arquivos gerados automaticamente
+Drivers/CMSIS/Device/ST/*/Source/Templates/*
+Middlewares/
+
+# Manter apenas código fonte e configs importantes
