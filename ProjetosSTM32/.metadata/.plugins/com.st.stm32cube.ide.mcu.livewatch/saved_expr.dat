@@ -1,3 +1,4 @@
-Bt1_State
-Status_LED
-contador
+ValorADC
+voltTemp
+voltTempFilt
+valorTemp
