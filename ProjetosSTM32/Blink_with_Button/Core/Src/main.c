@@ -19,7 +19,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
@@ -153,7 +152,7 @@ int main(void)
 
   }//FIM do While TRUE
   /* USER CODE END 3 */
-}//FIM DO MAIN
+}
 
 /**
   * @brief System Clock Configuration

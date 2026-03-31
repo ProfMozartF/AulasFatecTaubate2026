@@ -1,7 +1,7 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Blink_with_Button Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:DebugTest Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:LedBlink2 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ReadADC_Test1 Debug
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Teste_Temperatura_NTC Debug
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Blink_with_Button\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Blink_with_Button\ Debug/activeLaunchTarget=null\:---
@@ -10,3 +10,4 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:DebugTest\ Debug/activeLaunchTa
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:LedBlink2\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:LedBlink2\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ReadADC_Test1\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Teste_Temperatura_NTC\ Debug/activeLaunchMode=debug
