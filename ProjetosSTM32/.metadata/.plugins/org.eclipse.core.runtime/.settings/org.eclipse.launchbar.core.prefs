@@ -11,3 +11,4 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:LedBlink2\ Debug/activeLaunchMo
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:LedBlink2\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ReadADC_Test1\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Teste_Temperatura_NTC\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Teste_Temperatura_NTC\ Debug/activeLaunchTarget=null\:---
