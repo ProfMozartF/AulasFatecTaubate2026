@@ -1,4 +1,6 @@
-ValorADC
-voltTemp
-voltTempFilt
-valorTemp
+ADCBuffer[0]
+ADCBuffer[1]
+temperatura
+temperatura_Filt
+pressao
+pressao_Filt
