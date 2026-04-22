@@ -178,8 +178,8 @@ float CalculaTemperatura(uint8_t ADC_Channel){
 }
 
 float CalculaPressao(uint8_t ADC_Channel){
-	float Volt = ADCBuffer[ADC_Channel]*FatorADC;
-	float ValorPressao = ((Volt/5)+0.04)/0.00369;
+	float Volt = (ADCBuffer[ADC_Channel]*FatorADC)*1.515;
+	float ValorPressao = ((Volt/5.1)+0.04)/0.00369;
 	return ValorPressao;
 	/*
 	Modelo: NXP MPX4250AP

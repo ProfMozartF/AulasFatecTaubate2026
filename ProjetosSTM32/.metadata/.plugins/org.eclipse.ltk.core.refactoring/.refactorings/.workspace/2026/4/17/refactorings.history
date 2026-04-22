@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;Exemplo_PWM_C6T6&apos;" deleteContents="true" description="Delete resource &apos;Exemplo_PWM_C6T6&apos;" element1="/Exemplo_PWM_C6T6" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1776821408672"/>
+</session>

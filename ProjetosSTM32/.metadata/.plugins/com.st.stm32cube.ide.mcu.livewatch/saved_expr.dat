@@ -1,6 +1,3 @@
-ADCBuffer[0]
-ADCBuffer[1]
-temperatura
-temperatura_Filt
-pressao
-pressao_Filt
+ValorADCBruto
+SetPoint
+PWM_Atual

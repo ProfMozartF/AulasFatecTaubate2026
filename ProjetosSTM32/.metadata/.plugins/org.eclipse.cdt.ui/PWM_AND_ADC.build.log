@@ -1,0 +1,10 @@
+22:45:46 **** Incremental Build of configuration Debug for project PWM_AND_ADC ****
+make -j8 all 
+arm-none-eabi-size  PWM_AND_ADC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  29424	    468	   2156	  32048	   7d30	PWM_AND_ADC.elf
+Finished building: default.size.stdout
+ 
+
+22:45:46 Build Finished. 0 errors, 0 warnings. (took 429ms)
+
