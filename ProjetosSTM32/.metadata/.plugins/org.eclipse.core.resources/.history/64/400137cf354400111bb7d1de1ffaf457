@@ -23,29 +23,22 @@
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "string.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 typedef enum {
-	desligado=0,
-	ligado
-}LED_State;
-
-enum {
-	AN0 = 0,
-	AN1 = 1,
-	AN2 = 2,
-	AN3 = 3
-}ADC_Channel;
-
+  ADC_Pedal1 = 0,
+  ADC_Pedal2 = 1,
+  ADC_Borboleta1 = 2,
+  ADC_Borboleta2 = 3,
+} ADC_Channel_t;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define FatorADC 0.0008056640625
-#define Fator5V 1.515
-#define alpha 0.05
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -62,11 +55,9 @@ TIM_HandleTypeDef htim1;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-volatile uint16_t ADCBuffer[4];
-float voltPedal1 = 0.0;
-float voltPedal2 = 0.0;
-float voltPotBorboleta1 = 0.0;
-float voltPotBorboleta2 = 0.0;
+static const uint8_t uartTxMessage[50];
+#define ADC_BUFFER_SIZE 4
+uint16_t adcBuffer[ADC_BUFFER_SIZE];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -76,9 +67,8 @@ static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_USART1_UART_Init(void);
-float retornaVolt(uint8_t canalAN);
 /* USER CODE BEGIN PFP */
-
+uint16_t somaSensor(ADC_Channel_t channel );
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -120,25 +110,40 @@ int main(void)
   MX_TIM1_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
   HAL_ADC_Stop(&hadc1); //Desabilita o periférico
   HAL_ADCEx_Calibration_Start(&hadc1);
-  HAL_ADC_Start_DMA(&hadc1, (uint32_t *)ADCBuffer, 4);
+  /* Inicia ADC em modo de conversão contínua com DMA */
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adcBuffer, ADC_BUFFER_SIZE);
 
-  __HAL_TIM_ENABLE(&htim1);
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  voltPedal1 = retornaVolt(AN2);
-	  voltPedal2 = retornaVolt(AN3);
-	  voltPotBorboleta1 = retornaVolt(AN0);
-	  voltPotBorboleta2 = retornaVolt(AN1);
+    /* Transmite mensagem via UART1 */
+    HAL_UART_Transmit(&huart1, (uint8_t *)uartTxMessage, sizeof(uartTxMessage) - 1, HAL_MAX_DELAY);
+    HAL_Delay(1000);
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+    //uint16_t pedal1 = adcBuffer[ADC_Pedal1];
+   // uint16_t pedal2 = adcBuffer[ADC_Pedal2];  
+    //uint16_t borboleta1 = adcBuffer[ADC_Borboleta1];
+    //uint16_t borboleta2 = adcBuffer[ADC_Borboleta2];
+    uint16_t pedal1 = somaSensor(ADC_Pedal1);
+    uint16_t pedal2 = somaSensor(ADC_Pedal2);   
+    uint16_t borboleta1 = somaSensor(ADC_Borboleta1);
+    uint16_t borboleta2 = somaSensor(ADC_Borboleta2);
 
-HAL_Delay(50);
+    float voltagePedal1 = (pedal1 * 3.3) / 4095;
+    float voltagePedal2 = (pedal2 * 3.3) / 4095;
+    float voltageBorboleta1 = (borboleta1 * 3.3)  / 4095;
+    float voltageBorboleta2 = (borboleta2 * 3.3)  / 4095;
+
+    uint16_t dutyCyclePedal1 = (pedal1 * 1000) / 4095;
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCyclePedal1);
+     
+    
 
     /* USER CODE END WHILE */
 
@@ -146,23 +151,6 @@ HAL_Delay(50);
   }
   /* USER CODE END 3 */
 }
-
-
-//**********************************************************************************************************
-
-float retornaVolt(uint8_t canalAN){
-	uint32_t somaTemp = 0;
-	uint8_t contTemp =0;
-	uint16_t mediaTemp = 0;
-	while(contTemp<100){
-		somaTemp+= ADCBuffer[canalAN];
-		HAL_Delay(1);
-	}
-	mediaTemp = somaTemp/100;
-	float VoltTemp = (mediaTemp*FatorADC)*Fator5V;
-	return VoltTemp;
-}
-
 
 /**
   * @brief System Clock Configuration
@@ -177,13 +165,10 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -193,17 +178,17 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }
   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
-  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV2;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
@@ -306,9 +291,9 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 71;
+  htim1.Init.Prescaler = 72-1;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 500;
+  htim1.Init.Period = 1000;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
@@ -341,14 +326,10 @@ static void MX_TIM1_Init(void)
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_ENABLE;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
   {
     Error_Handler();
   }
@@ -452,7 +433,17 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+uint16_t somaSensor(ADC_Channel_t channel ){
+  uint32_t soma = 0;
+  uint8_t cont=0;
+  uint16_t mediaTemp =0;
+ while(cont < 50){
+    soma += adcBuffer[cont];
+    cont++;
+  }
+  mediaTemp = soma/50;
+  return mediaTemp;
+}
 /* USER CODE END 4 */
 
 /**

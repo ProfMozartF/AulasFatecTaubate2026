@@ -72,6 +72,7 @@ ADC_HandleTypeDef hadc1;
 DMA_HandleTypeDef hdma_adc1;
 
 TIM_HandleTypeDef htim1;
+TIM_HandleTypeDef htim2;
 
 UART_HandleTypeDef huart1;
 
@@ -105,7 +106,7 @@ static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_USART1_UART_Init(void);
-
+static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 float retornaVolt(uint8_t canalAN);
 TesteDosSensores checkPedal(float voltP1, float voltP2);
@@ -151,6 +152,7 @@ int main(void)
   MX_ADC1_Init();
   MX_TIM1_Init();
   MX_USART1_UART_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_ADC_Stop(&hadc1); //Desabilita o periférico
   HAL_ADCEx_Calibration_Start(&hadc1);
@@ -198,7 +200,7 @@ int main(void)
 		 PorcPedal = 100.0f;
 	 }
 
-	 float pwmPercent = PID_Calculate(50.0, (float)PWM_Forward / 5.0f);
+	 float pwmPercent = PID_Calculate(PorcPedal, (float)PWM_Forward / 5.0f);
 	 PWM_Forward = (uint16_t)(pwmPercent * 5.0f);
 	 if(PWM_Forward > 490){PWM_Forward = 490;}
 	 else if(PWM_Forward < 5){PWM_Forward = 5;}
@@ -213,92 +215,6 @@ HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
-}
-
-
-//**********************************************************************************************************
-
-float retornaVolt(uint8_t canalAN){
-	uint32_t somaTemp = 0;
-	uint8_t contTemp =0;
-	uint16_t mediaTemp = 0;
-	while(contTemp<100){
-		somaTemp+= ADCBuffer[canalAN];
-		HAL_Delay(1);
-		contTemp++;
-	}
-	mediaTemp = somaTemp/100;
-	float VoltTemp = (mediaTemp*FatorADC)*Fator5V;
-	return VoltTemp;
-}
-
-TesteDosSensores checkPedal(float voltP1, float voltP2){
-	TesteDosSensores redundant = TesteOk; // Assume inicialmente redundante
-    float razaoDiv = fabs(voltP1/voltP2);
-    float deviation = razaoDiv / 2.0;
-    if (redundant) {
-        if (deviation > 0.05f) redundant = TesteNOk; // Gatilho em 5%
-    } else {
-        if (deviation < 0.04f) redundant = TesteOk; // Reset em 4% (histerese)
-    }
-    return redundant;
-}
-
-
-TesteDosSensores CheckVoltSensor(float TempVoltAtual, NomeSensor Sensor_Testado){
-	TesteDosSensores SinalValido = TesteOk;
-    const char *sensorName;
-
-    switch (Sensor_Testado) {
-        case PosicaoPedal1:
-            sensorName = "PosicaoPedal1";
-            break;
-        case PosicaoPedal2:
-            sensorName = "PosicaoPedal2";
-            break;
-        case PosicaoBorboleta1:
-            sensorName = "PosicaoBorboleta1";
-            break;
-        case PosicaoBorboleta2:
-            sensorName = "PosicaoBorboleta2";
-            break;
-        default:
-            sensorName = "Sensor desconhecido";
-            break;
-    }
-
-    if (TempVoltAtual > 4.5f) {
-        SinalValido = TesteNOk;
-        sprintf(mensagem, "Curto para VCC no sensor: %s\r\n", sensorName);
-        HAL_UART_Transmit(&huart1, (uint8_t*)mensagem, strlen(mensagem), 50);
-    }
-    else if (TempVoltAtual < 0.2f) {
-        SinalValido = TesteNOk;
-        sprintf(mensagem, "Curto para GND no sensor: %s\r\n", sensorName);
-        HAL_UART_Transmit(&huart1, (uint8_t*)mensagem, strlen(mensagem), 50);
-    }
-    else {
-        SinalValido = TesteOk;
-    }
-    return SinalValido;
-}
-
-float PID_Calculate(float setpoint, float measurement){
-    float error = setpoint - measurement;
-    pid_integral += error * PID_DT;
-    float derivative = (error - pid_last_error) / PID_DT;
-    float output = PID_KP * error + PID_KI * pid_integral + PID_KD * derivative;
-
-    if (output > PID_MAX) {
-        output = PID_MAX;
-        pid_integral -= error * PID_DT;
-    } else if (output < PID_MIN) {
-        output = PID_MIN;
-        pid_integral -= error * PID_DT;
-    }
-
-    pid_last_error = error;
-    return output;
 }
 
 /**
@@ -478,7 +394,7 @@ static void MX_TIM1_Init(void)
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  sConfigOC.OCFastMode = TIM_OCFAST_ENABLE;
   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
@@ -504,6 +420,58 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 2 */
   HAL_TIM_MspPostInit(&htim1);
+
+}
+
+/**
+  * @brief TIM2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM2_Init(void)
+{
+
+  /* USER CODE BEGIN TIM2_Init 0 */
+
+  /* USER CODE END TIM2_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_SlaveConfigTypeDef sSlaveConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM2_Init 1 */
+
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 719;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 65535;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sSlaveConfig.SlaveMode = TIM_SLAVEMODE_DISABLE;
+  sSlaveConfig.InputTrigger = TIM_TS_ITR0;
+  if (HAL_TIM_SlaveConfigSynchro(&htim2, &sSlaveConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM2_Init 2 */
+
+  /* USER CODE END TIM2_Init 2 */
 
 }
 
@@ -589,7 +557,90 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+//**********************************************************************************************************
 
+float retornaVolt(uint8_t canalAN){
+	uint32_t somaTemp = 0;
+	uint8_t contTemp =0;
+	uint16_t mediaTemp = 0;
+	while(contTemp<100){
+		somaTemp+= ADCBuffer[canalAN];
+		HAL_Delay(1);
+		contTemp++;
+	}
+	mediaTemp = somaTemp/100;
+	float VoltTemp = (mediaTemp*FatorADC)*Fator5V;
+	return VoltTemp;
+}
+
+TesteDosSensores checkPedal(float voltP1, float voltP2){
+	TesteDosSensores redundant = TesteOk; // Assume inicialmente redundante
+    float razaoDiv = fabs(voltP1/voltP2);
+    float deviation = razaoDiv / 2.0;
+    if (redundant) {
+        if (deviation > 0.05f) redundant = TesteNOk; // Gatilho em 5%
+    } else {
+        if (deviation < 0.04f) redundant = TesteOk; // Reset em 4% (histerese)
+    }
+    return redundant;
+}
+
+
+TesteDosSensores CheckVoltSensor(float TempVoltAtual, NomeSensor Sensor_Testado){
+	TesteDosSensores SinalValido = TesteOk;
+    const char *sensorName;
+
+    switch (Sensor_Testado) {
+        case PosicaoPedal1:
+            sensorName = "PosicaoPedal1";
+            break;
+        case PosicaoPedal2:
+            sensorName = "PosicaoPedal2";
+            break;
+        case PosicaoBorboleta1:
+            sensorName = "PosicaoBorboleta1";
+            break;
+        case PosicaoBorboleta2:
+            sensorName = "PosicaoBorboleta2";
+            break;
+        default:
+            sensorName = "Sensor desconhecido";
+            break;
+    }
+
+    if (TempVoltAtual > 4.5f) {
+        SinalValido = TesteNOk;
+        sprintf(mensagem, "Curto para VCC no sensor: %s\r\n", sensorName);
+        HAL_UART_Transmit(&huart1, (uint8_t*)mensagem, strlen(mensagem), 50);
+    }
+    else if (TempVoltAtual < 0.2f) {
+        SinalValido = TesteNOk;
+        sprintf(mensagem, "Curto para GND no sensor: %s\r\n", sensorName);
+        HAL_UART_Transmit(&huart1, (uint8_t*)mensagem, strlen(mensagem), 50);
+    }
+    else {
+        SinalValido = TesteOk;
+    }
+    return SinalValido;
+}
+
+float PID_Calculate(float setpoint, float measurement){
+    float error = setpoint - measurement;
+    pid_integral += error * PID_DT;
+    float derivative = (error - pid_last_error) / PID_DT;
+    float output = PID_KP * error + PID_KI * pid_integral + PID_KD * derivative;
+
+    if (output > PID_MAX) {
+        output = PID_MAX;
+        pid_integral -= error * PID_DT;
+    } else if (output < PID_MIN) {
+        output = PID_MIN;
+        pid_integral -= error * PID_DT;
+    }
+
+    pid_last_error = error;
+    return output;
+}
 /* USER CODE END 4 */
 
 /**

@@ -1,3 +1,7 @@
-ValorADCBruto
-SetPoint
-PWM_Atual
+PWM_Forward
+voltPedal1
+voltPedal2
+voltPotBorboleta1
+voltPotBorboleta2
+PorcBorboleta
+PorcPedal

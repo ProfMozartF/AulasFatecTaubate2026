@@ -21,12 +21,19 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stdio.h"
+#include "string.h"
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+typedef enum {
+  ADC_Pedal1 = 0,
+  ADC_Pedal2 = 1,
+  ADC_Borboleta1 = 2,
+  ADC_Borboleta2 = 3,
+} ADC_Channel_t;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -48,6 +55,14 @@ TIM_HandleTypeDef htim1;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
+static const uint8_t uartTxMessage[50];
+#define ADC_BUFFER_SIZE 4
+uint16_t adcBuffer[ADC_BUFFER_SIZE];
+float voltagePedal1 = 0.0;
+float voltagePedal2 = 0.0;
+float voltageBorboleta1 = 0.0;
+float voltageBorboleta2 = 0.0;
+uint16_t dutyCyclePedal1 =0;
 
 /* USER CODE END PV */
 
@@ -59,7 +74,7 @@ static void MX_ADC1_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
-
+uint16_t somaSensor(ADC_Channel_t channel );
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -101,6 +116,11 @@ int main(void)
   MX_TIM1_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_ADC_Stop(&hadc1); //Desabilita o periférico
+  HAL_ADCEx_Calibration_Start(&hadc1);
+  /* Inicia ADC em modo de conversão contínua com DMA */
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adcBuffer, ADC_BUFFER_SIZE);
 
   /* USER CODE END 2 */
 
@@ -108,6 +128,29 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    /* Transmite mensagem via UART1 */
+    HAL_UART_Transmit(&huart1, (uint8_t *)uartTxMessage, sizeof(uartTxMessage) - 1, HAL_MAX_DELAY);
+    HAL_Delay(1000);
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+    //uint16_t pedal1 = adcBuffer[ADC_Pedal1];
+   // uint16_t pedal2 = adcBuffer[ADC_Pedal2];  
+    //uint16_t borboleta1 = adcBuffer[ADC_Borboleta1];
+    //uint16_t borboleta2 = adcBuffer[ADC_Borboleta2];
+    uint16_t pedal1 = somaSensor(ADC_Pedal1);
+    uint16_t pedal2 = somaSensor(ADC_Pedal2);   
+    uint16_t borboleta1 = somaSensor(ADC_Borboleta1);
+    uint16_t borboleta2 = somaSensor(ADC_Borboleta2);
+
+     voltagePedal1 = (pedal1 * 3.3) / 4095;
+     voltagePedal2 = (pedal2 * 3.3) / 4095;
+     voltageBorboleta1 = (borboleta1 * 3.3)  / 4095;
+     voltageBorboleta2 = (borboleta2 * 3.3)  / 4095;
+
+     dutyCyclePedal1 = (pedal1 * 1000) / 4095;
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCyclePedal1);
+     
+    
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -396,7 +439,17 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+uint16_t somaSensor(ADC_Channel_t channel ){
+  uint32_t soma = 0;
+  uint8_t cont=0;
+  uint16_t mediaTemp =0;
+ while(cont < 50){
+    soma += adcBuffer[cont];
+    cont++;
+  }
+  mediaTemp = soma/50;
+  return mediaTemp;
+}
 /* USER CODE END 4 */
 
 /**

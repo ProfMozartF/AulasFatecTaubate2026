@@ -23,6 +23,8 @@
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "string.h"
+#include <stdbool.h>
+#include <math.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -32,11 +34,32 @@ typedef enum {
 	ligado
 }LED_State;
 
+enum {
+	AN0 = 0,
+	AN1 = 1,
+	AN2 = 2,
+	AN3 = 3
+}ADC_Channel;
+
+typedef enum {
+	PosicaoPedal1 = 1,
+	PosicaoPedal2 = 2,
+	PosicaoBorboleta1 = 3,
+	PosicaoBorboleta2 = 4
+}NomeSensor;
+
+typedef enum {
+	TesteOk = 1,
+	TesteNOk = 0
+}TesteDosSensores;
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define FatorADC 0.0008056640625
+#define Fator5V 1.515
+#define alpha 0.05
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -53,7 +76,26 @@ TIM_HandleTypeDef htim1;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
+volatile uint16_t ADCBuffer[4];
+float voltPedal1 = 0.0;
+float voltPedal2 = 0.0;
+float voltPotBorboleta1 = 0.0;
+float voltPotBorboleta2 = 0.0;
+char mensagem[50];
+uint16_t PWM_Forward;
+uint16_t PWM_Reverse;
+float PorcBorboleta = 0.0;
+float PorcPedal = 0.0;
 
+#define PID_KP 0.5f
+#define PID_KI 0.01f
+#define PID_KD 0.01f
+#define PID_DT 0.05f
+#define PID_MIN 0.0f
+#define PID_MAX 100.0f
+
+float pid_integral = 0.0f;
+float pid_last_error = 0.0f;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -63,8 +105,12 @@ static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_USART1_UART_Init(void);
-/* USER CODE BEGIN PFP */
 
+/* USER CODE BEGIN PFP */
+float retornaVolt(uint8_t canalAN);
+TesteDosSensores checkPedal(float voltP1, float voltP2);
+TesteDosSensores CheckVoltSensor(float TempVoltAtual, NomeSensor Sensor_Testado);
+float PID_Calculate(float setpoint, float measurement);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -108,24 +154,151 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_ADC_Stop(&hadc1); //Desabilita o periférico
   HAL_ADCEx_Calibration_Start(&hadc1);
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t *)ADCBuffer, 4);
+
   __HAL_TIM_ENABLE(&htim1);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+
+  PWM_Forward = 0;
+  PWM_Reverse = 0;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  voltPedal1 = retornaVolt(AN2);
+	  voltPedal2 = retornaVolt(AN3);
+	  voltPotBorboleta1 = retornaVolt(AN0);
+	  voltPotBorboleta2 = retornaVolt(AN1);
 
+	  if(checkPedal(voltPedal1, voltPedal2)== 0){
+		  sprintf(mensagem, "FALHA FUNCIONAL NO PEDAL\r\n");
+		  HAL_UART_Transmit(&huart1, (uint8_t*)mensagem, strlen(mensagem), 50);
+	 }
 
+	  if(CheckVoltSensor(voltPedal1,PosicaoPedal1)==1){
+		  PorcPedal = (voltPedal1-0.56)/0.0271;
+	  }
+	  if(CheckVoltSensor(voltPedal2,PosicaoPedal2)){
+		  //em espera
+	  }
+	  if(CheckVoltSensor(voltPotBorboleta1,PosicaoBorboleta1)==1){
+		  PorcBorboleta = (voltPotBorboleta1-0.42)/0.02806;
+	  }
+	  if(CheckVoltSensor(voltPotBorboleta2,PosicaoBorboleta2)){
+		  //em espera
+	  }
 
+	 if (PorcPedal < 0.0f) {
+		 PorcPedal = 0.0f;
+	 } else if (PorcPedal > 100.0f) {
+		 PorcPedal = 100.0f;
+	 }
+
+	 float pwmPercent = PID_Calculate(50.0, (float)PWM_Forward / 5.0f);
+	 PWM_Forward = (uint16_t)(pwmPercent * 5.0f);
+	 if(PWM_Forward > 490){PWM_Forward = 490;}
+	 else if(PWM_Forward < 5){PWM_Forward = 5;}
+
+	 TIM1->CCR1 = PWM_Forward; //Atualiza o valor do comparador que gera o Duty+
+	 TIM1->CCR4 = PWM_Reverse;
+HAL_Delay(50);
+HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
 
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
+}
+
+
+//**********************************************************************************************************
+
+float retornaVolt(uint8_t canalAN){
+	uint32_t somaTemp = 0;
+	uint8_t contTemp =0;
+	uint16_t mediaTemp = 0;
+	while(contTemp<100){
+		somaTemp+= ADCBuffer[canalAN];
+		HAL_Delay(1);
+		contTemp++;
+	}
+	mediaTemp = somaTemp/100;
+	float VoltTemp = (mediaTemp*FatorADC)*Fator5V;
+	return VoltTemp;
+}
+
+TesteDosSensores checkPedal(float voltP1, float voltP2){
+	TesteDosSensores redundant = TesteOk; // Assume inicialmente redundante
+    float razaoDiv = fabs(voltP1/voltP2);
+    float deviation = razaoDiv / 2.0;
+    if (redundant) {
+        if (deviation > 0.05f) redundant = TesteNOk; // Gatilho em 5%
+    } else {
+        if (deviation < 0.04f) redundant = TesteOk; // Reset em 4% (histerese)
+    }
+    return redundant;
+}
+
+
+TesteDosSensores CheckVoltSensor(float TempVoltAtual, NomeSensor Sensor_Testado){
+	TesteDosSensores SinalValido = TesteOk;
+    const char *sensorName;
+
+    switch (Sensor_Testado) {
+        case PosicaoPedal1:
+            sensorName = "PosicaoPedal1";
+            break;
+        case PosicaoPedal2:
+            sensorName = "PosicaoPedal2";
+            break;
+        case PosicaoBorboleta1:
+            sensorName = "PosicaoBorboleta1";
+            break;
+        case PosicaoBorboleta2:
+            sensorName = "PosicaoBorboleta2";
+            break;
+        default:
+            sensorName = "Sensor desconhecido";
+            break;
+    }
+
+    if (TempVoltAtual > 4.5f) {
+        SinalValido = TesteNOk;
+        sprintf(mensagem, "Curto para VCC no sensor: %s\r\n", sensorName);
+        HAL_UART_Transmit(&huart1, (uint8_t*)mensagem, strlen(mensagem), 50);
+    }
+    else if (TempVoltAtual < 0.2f) {
+        SinalValido = TesteNOk;
+        sprintf(mensagem, "Curto para GND no sensor: %s\r\n", sensorName);
+        HAL_UART_Transmit(&huart1, (uint8_t*)mensagem, strlen(mensagem), 50);
+    }
+    else {
+        SinalValido = TesteOk;
+    }
+    return SinalValido;
+}
+
+float PID_Calculate(float setpoint, float measurement){
+    float error = setpoint - measurement;
+    pid_integral += error * PID_DT;
+    float derivative = (error - pid_last_error) / PID_DT;
+    float output = PID_KP * error + PID_KI * pid_integral + PID_KD * derivative;
+
+    if (output > PID_MAX) {
+        output = PID_MAX;
+        pid_integral -= error * PID_DT;
+    } else if (output < PID_MIN) {
+        output = PID_MIN;
+        pid_integral -= error * PID_DT;
+    }
+
+    pid_last_error = error;
+    return output;
 }
 
 /**
@@ -305,7 +478,7 @@ static void MX_TIM1_Init(void)
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_ENABLE;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
