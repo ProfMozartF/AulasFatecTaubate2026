@@ -87,16 +87,16 @@ uint16_t PWM_Forward;
 uint16_t PWM_Reverse;
 float PorcBorboleta = 0.0;
 float PorcPedal = 0.0;
+float RefPosBorboleta = 60.0;
+float set_point = 0.0;
 
-#define PID_KP 0.5f
-#define PID_KI 0.01f
-#define PID_KD 0.01f
-#define PID_DT 0.05f
-#define PID_MIN 0.0f
-#define PID_MAX 100.0f
+//??????????????????????? CONTROLE ?????????????????????????????????
+float Ts = 0.0250;
+float Kp = 0.0008;
+float Ti = 0.4423;
+float Td = 0;
+float u, e, ud, ui, up, ui_ant, ya, y_ant;
 
-float pid_integral = 0.0f;
-float pid_last_error = 0.0f;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -111,7 +111,8 @@ static void MX_TIM2_Init(void);
 float retornaVolt(uint8_t canalAN);
 TesteDosSensores checkPedal(float voltP1, float voltP2);
 TesteDosSensores CheckVoltSensor(float TempVoltAtual, NomeSensor Sensor_Testado);
-float PID_Calculate(float setpoint, float measurement);
+float CalculoPID(float setpoint, float PosMedida);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -200,15 +201,15 @@ int main(void)
 		 PorcPedal = 100.0f;
 	 }
 
-	 float pwmPercent = PID_Calculate(PorcPedal, (float)PWM_Forward / 5.0f);
-	 PWM_Forward = (uint16_t)(pwmPercent * 5.0f);
+	 float pwmPercent = CalculoPID(RefPosBorboleta,PorcBorboleta);
+	 PWM_Forward = (uint16_t)(pwmPercent * 1.0f);
 	 if(PWM_Forward > 490){PWM_Forward = 490;}
 	 else if(PWM_Forward < 5){PWM_Forward = 5;}
 
 	 TIM1->CCR1 = PWM_Forward; //Atualiza o valor do comparador que gera o Duty+
 	 TIM1->CCR4 = PWM_Reverse;
-HAL_Delay(50);
-HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+HAL_Delay(10);
+//HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
 
     /* USER CODE END WHILE */
 
@@ -359,7 +360,7 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 71;
+  htim1.Init.Prescaler = 6;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim1.Init.Period = 500;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -624,22 +625,22 @@ TesteDosSensores CheckVoltSensor(float TempVoltAtual, NomeSensor Sensor_Testado)
     return SinalValido;
 }
 
-float PID_Calculate(float setpoint, float measurement){
-    float error = setpoint - measurement;
-    pid_integral += error * PID_DT;
-    float derivative = (error - pid_last_error) / PID_DT;
-    float output = PID_KP * error + PID_KI * pid_integral + PID_KD * derivative;
-
-    if (output > PID_MAX) {
-        output = PID_MAX;
-        pid_integral -= error * PID_DT;
-    } else if (output < PID_MIN) {
-        output = PID_MIN;
-        pid_integral -= error * PID_DT;
-    }
-
-    pid_last_error = error;
-    return output;
+float CalculoPID(float setpoint, float PosMedida){
+	set_point = setpoint;
+	ya = PosMedida;
+	e=set_point-ya;
+	up = Kp*e;
+	ui = (((Kp*Ts)/Ti)*e) + ui_ant;
+	ud = ((Kp*Td)/Ts)*(ya-y_ant);
+	u = up+ui+ud;
+	if(u>500.0) { u=500.0; } // condi��o Antiwindup
+	else if(u<-500.0){u=-500.0;}
+		else
+		{
+		ui_ant = ui;
+		y_ant = ya;
+		}
+	return u;
 }
 /* USER CODE END 4 */
 
