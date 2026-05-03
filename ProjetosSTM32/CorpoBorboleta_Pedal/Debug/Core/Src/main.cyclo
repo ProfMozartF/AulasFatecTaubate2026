@@ -10,4 +10,4 @@
 ../Core/Src/main.c:577:18:checkPedal	4
 ../Core/Src/main.c:590:18:CheckVoltSensor	7
 ../Core/Src/main.c:628:7:CalculoPID	3
-../Core/Src/main.c:651:6:Error_Handler	1
+../Core/Src/main.c:653:6:Error_Handler	1

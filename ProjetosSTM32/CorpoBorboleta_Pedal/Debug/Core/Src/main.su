@@ -10,4 +10,4 @@
 ../Core/Src/main.c:577:18:checkPedal	32	static
 ../Core/Src/main.c:590:18:CheckVoltSensor	24	static
 ../Core/Src/main.c:628:7:CalculoPID	24	static
-../Core/Src/main.c:651:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:653:6:Error_Handler	4	static,ignoring_inline_asm

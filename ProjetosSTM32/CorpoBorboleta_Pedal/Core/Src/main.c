@@ -90,11 +90,11 @@ float PorcPedal = 0.0;
 float RefPosBorboleta = 60.0;
 float set_point = 0.0;
 
-//??????????????????????? CONTROLE ?????????????????????????????????
-float Ts = 0.0250;
-float Kp = 0.0008;
-float Ti = 0.4423;
-float Td = 0;
+//??????????????????????? CONTROLE --> linear até 40%
+float Ts = 0.01;
+float Kp = 0.83;
+float Ti = 0.00515;
+float Td = 0.002;
 float u, e, ud, ui, up, ui_ant, ya, y_ant;
 
 /* USER CODE END PV */
@@ -204,7 +204,7 @@ int main(void)
 	 float pwmPercent = CalculoPID(RefPosBorboleta,PorcBorboleta);
 	 PWM_Forward = (uint16_t)(pwmPercent * 1.0f);
 	 if(PWM_Forward > 490){PWM_Forward = 490;}
-	 else if(PWM_Forward < 5){PWM_Forward = 5;}
+	 else if(PWM_Forward < 1){PWM_Forward = 1;}
 
 	 TIM1->CCR1 = PWM_Forward; //Atualiza o valor do comparador que gera o Duty+
 	 TIM1->CCR4 = PWM_Reverse;
@@ -627,19 +627,21 @@ TesteDosSensores CheckVoltSensor(float TempVoltAtual, NomeSensor Sensor_Testado)
 
 float CalculoPID(float setpoint, float PosMedida){
 	set_point = setpoint;
+	//if(set_point>50.0){Kp=0.0002;Ti=0.0004;}
 	ya = PosMedida;
 	e=set_point-ya;
 	up = Kp*e;
 	ui = (((Kp*Ts)/Ti)*e) + ui_ant;
 	ud = ((Kp*Td)/Ts)*(ya-y_ant);
-	u = up+ui+ud;
-	if(u>500.0) { u=500.0; } // condi��o Antiwindup
-	else if(u<-500.0){u=-500.0;}
+
+	if(ui>500.0) { ui=500.0; } // condi��o Antiwindup
+	else if(ui<-500.0){ui=-500.0;}
 		else
 		{
 		ui_ant = ui;
 		y_ant = ya;
 		}
+	u = up+ui+ud;
 	return u;
 }
 /* USER CODE END 4 */

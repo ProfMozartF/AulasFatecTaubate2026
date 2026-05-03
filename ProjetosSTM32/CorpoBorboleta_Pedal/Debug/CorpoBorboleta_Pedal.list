@@ -9,43 +9,43 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .rodata       0000012c  08005adc  08005adc  00006adc  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08005c08  08005c08  0000706c  2**0
+  3 .ARM.extab    00000000  08005c08  08005c08  00007070  2**0
                   CONTENTS, READONLY
   4 .ARM          00000008  08005c08  08005c08  00006c08  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  08005c10  08005c10  0000706c  2**0
+  5 .preinit_array 00000000  08005c10  08005c10  00007070  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   6 .init_array   00000004  08005c10  08005c10  00006c10  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   7 .fini_array   00000004  08005c14  08005c14  00006c14  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         0000006c  20000000  08005c18  00007000  2**2
+  8 .data         00000070  20000000  08005c18  00007000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000338  2000006c  08005c84  0000706c  2**2
+  9 .bss          00000334  20000070  08005c88  00007070  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  200003a4  08005c84  000073a4  2**0
+ 10 ._user_heap_stack 00000604  200003a4  08005c88  000073a4  2**0
                   ALLOC
- 11 .ARM.attributes 00000029  00000000  00000000  0000706c  2**0
+ 11 .ARM.attributes 00000029  00000000  00000000  00007070  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000e1bd  00000000  00000000  00007095  2**0
+ 12 .debug_info   0000e1bd  00000000  00000000  00007099  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 0000226b  00000000  00000000  00015252  2**0
+ 13 .debug_abbrev 0000226b  00000000  00000000  00015256  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000de0  00000000  00000000  000174c0  2**3
+ 14 .debug_aranges 00000de0  00000000  00000000  000174c8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000ae2  00000000  00000000  000182a0  2**0
+ 15 .debug_rnglists 00000ae2  00000000  00000000  000182a8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  000184de  00000000  00000000  00018d82  2**0
+ 16 .debug_macro  000184de  00000000  00000000  00018d8a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0001005e  00000000  00000000  00031260  2**0
+ 17 .debug_line   00010060  00000000  00000000  00031268  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0008df3a  00000000  00000000  000412be  2**0
+ 18 .debug_str    0008df3a  00000000  00000000  000412c8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000cf1f8  2**0
+ 19 .comment      00000043  00000000  00000000  000cf202  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00004194  00000000  00000000  000cf23c  2**2
+ 20 .debug_frame  00004194  00000000  00000000  000cf248  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000064  00000000  00000000  000d33d0  2**0
+ 21 .debug_line_str 00000064  00000000  00000000  000d33dc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -62,7 +62,7 @@ Disassembly of section .text:
  8000122:	2301      	movs	r3, #1
  8000124:	7023      	strb	r3, [r4, #0]
  8000126:	bd10      	pop	{r4, pc}
- 8000128:	2000006c 	.word	0x2000006c
+ 8000128:	20000070 	.word	0x20000070
  800012c:	00000000 	.word	0x00000000
  8000130:	08005ac4 	.word	0x08005ac4
 
@@ -75,7 +75,7 @@ Disassembly of section .text:
  800013e:	f3af 8000 	nop.w
  8000142:	bd08      	pop	{r3, pc}
  8000144:	00000000 	.word	0x00000000
- 8000148:	20000070 	.word	0x20000070
+ 8000148:	20000074 	.word	0x20000074
  800014c:	08005ac4 	.word	0x08005ac4
 
 08000150 <strlen>:
@@ -1581,13 +1581,13 @@ int main(void)
  8001160:	f44f 72f5 	mov.w	r2, #490	@ 0x1ea
  8001164:	801a      	strh	r2, [r3, #0]
  8001166:	e006      	b.n	8001176 <main+0x1ee>
-	 else if(PWM_Forward < 5){PWM_Forward = 5;}
+	 else if(PWM_Forward < 1){PWM_Forward = 1;}
  8001168:	4b14      	ldr	r3, [pc, #80]	@ (80011bc <main+0x234>)
  800116a:	881b      	ldrh	r3, [r3, #0]
- 800116c:	2b04      	cmp	r3, #4
- 800116e:	d802      	bhi.n	8001176 <main+0x1ee>
+ 800116c:	2b00      	cmp	r3, #0
+ 800116e:	d102      	bne.n	8001176 <main+0x1ee>
  8001170:	4b12      	ldr	r3, [pc, #72]	@ (80011bc <main+0x234>)
- 8001172:	2205      	movs	r2, #5
+ 8001172:	2201      	movs	r2, #1
  8001174:	801a      	strh	r2, [r3, #0]
 
 	 TIM1->CCR1 = PWM_Forward; //Atualiza o valor do comparador que gera o Duty+
@@ -1614,20 +1614,20 @@ HAL_Delay(10);
  80011a4:	3fdae147 	.word	0x3fdae147
  80011a8:	b94d9408 	.word	0xb94d9408
  80011ac:	3f9cbbc2 	.word	0x3f9cbbc2
- 80011b0:	20000088 	.word	0x20000088
- 80011b4:	200001d4 	.word	0x200001d4
- 80011b8:	200000fc 	.word	0x200000fc
- 80011bc:	2000021e 	.word	0x2000021e
- 80011c0:	20000220 	.word	0x20000220
- 80011c4:	200001dc 	.word	0x200001dc
- 80011c8:	200001e0 	.word	0x200001e0
- 80011cc:	200001e4 	.word	0x200001e4
- 80011d0:	200001e8 	.word	0x200001e8
+ 80011b0:	2000008c 	.word	0x2000008c
+ 80011b4:	200001d8 	.word	0x200001d8
+ 80011b8:	20000100 	.word	0x20000100
+ 80011bc:	20000222 	.word	0x20000222
+ 80011c0:	20000224 	.word	0x20000224
+ 80011c4:	200001e0 	.word	0x200001e0
+ 80011c8:	200001e4 	.word	0x200001e4
+ 80011cc:	200001e8 	.word	0x200001e8
+ 80011d0:	200001ec 	.word	0x200001ec
  80011d4:	08005adc 	.word	0x08005adc
- 80011d8:	200001ec 	.word	0x200001ec
- 80011dc:	2000018c 	.word	0x2000018c
- 80011e0:	20000228 	.word	0x20000228
- 80011e4:	20000224 	.word	0x20000224
+ 80011d8:	200001f0 	.word	0x200001f0
+ 80011dc:	20000190 	.word	0x20000190
+ 80011e0:	2000022c 	.word	0x2000022c
+ 80011e4:	20000228 	.word	0x20000228
  80011e8:	42c80000 	.word	0x42c80000
  80011ec:	20000000 	.word	0x20000000
  80011f0:	40012c00 	.word	0x40012c00
@@ -1916,7 +1916,7 @@ static void MX_ADC1_Init(void)
  8001372:	46bd      	mov	sp, r7
  8001374:	bd80      	pop	{r7, pc}
  8001376:	bf00      	nop
- 8001378:	20000088 	.word	0x20000088
+ 8001378:	2000008c 	.word	0x2000008c
  800137c:	40012400 	.word	0x40012400
 
 08001380 <MX_TIM1_Init>:
@@ -2166,7 +2166,7 @@ static void MX_TIM1_Init(void)
  80014fa:	46bd      	mov	sp, r7
  80014fc:	bd80      	pop	{r7, pc}
  80014fe:	bf00      	nop
- 8001500:	200000fc 	.word	0x200000fc
+ 8001500:	20000100 	.word	0x20000100
  8001504:	40012c00 	.word	0x40012c00
 
 08001508 <MX_TIM2_Init>:
@@ -2302,7 +2302,7 @@ static void MX_TIM2_Init(void)
  80015c6:	3730      	adds	r7, #48	@ 0x30
  80015c8:	46bd      	mov	sp, r7
  80015ca:	bd80      	pop	{r7, pc}
- 80015cc:	20000144 	.word	0x20000144
+ 80015cc:	20000148 	.word	0x20000148
 
 080015d0 <MX_USART1_UART_Init>:
   * @brief USART1 Initialization Function
@@ -2368,7 +2368,7 @@ static void MX_USART1_UART_Init(void)
  8001616:	bf00      	nop
  8001618:	bd80      	pop	{r7, pc}
  800161a:	bf00      	nop
- 800161c:	2000018c 	.word	0x2000018c
+ 800161c:	20000190 	.word	0x20000190
  8001620:	40013800 	.word	0x40013800
 
 08001624 <MX_DMA_Init>:
@@ -2590,7 +2590,7 @@ float retornaVolt(uint8_t canalAN){
  8001784:	3f4a6666 	.word	0x3f4a6666
  8001788:	a3d70a3d 	.word	0xa3d70a3d
  800178c:	3ff83d70 	.word	0x3ff83d70
- 8001790:	200001d4 	.word	0x200001d4
+ 8001790:	200001d8 	.word	0x200001d8
  8001794:	51eb851f 	.word	0x51eb851f
 
 08001798 <checkPedal>:
@@ -2783,8 +2783,8 @@ TesteDosSensores CheckVoltSensor(float TempVoltAtual, NomeSensor Sensor_Testado)
  80018d4:	08005b40 	.word	0x08005b40
  80018d8:	40900000 	.word	0x40900000
  80018dc:	08005b54 	.word	0x08005b54
- 80018e0:	200001ec 	.word	0x200001ec
- 80018e4:	2000018c 	.word	0x2000018c
+ 80018e0:	200001f0 	.word	0x200001f0
+ 80018e4:	20000190 	.word	0x20000190
  80018e8:	3e4ccccd 	.word	0x3e4ccccd
  80018ec:	08005b74 	.word	0x08005b74
 
@@ -2800,6 +2800,7 @@ float CalculoPID(float setpoint, float PosMedida){
  80018fa:	4a50      	ldr	r2, [pc, #320]	@ (8001a3c <CalculoPID+0x14c>)
  80018fc:	687b      	ldr	r3, [r7, #4]
  80018fe:	6013      	str	r3, [r2, #0]
+	//if(set_point>50.0){Kp=0.0002;Ti=0.0004;}
 	ya = PosMedida;
  8001900:	4a4f      	ldr	r2, [pc, #316]	@ (8001a40 <CalculoPID+0x150>)
  8001902:	683b      	ldr	r3, [r7, #0]
@@ -2893,73 +2894,74 @@ float CalculoPID(float setpoint, float PosMedida){
  80019be:	461a      	mov	r2, r3
  80019c0:	4b29      	ldr	r3, [pc, #164]	@ (8001a68 <CalculoPID+0x178>)
  80019c2:	601a      	str	r2, [r3, #0]
-	u = up+ui+ud;
- 80019c4:	4b21      	ldr	r3, [pc, #132]	@ (8001a4c <CalculoPID+0x15c>)
+
+	if(ui>500.0) { ui=500.0; } // condi��o Antiwindup
+ 80019c4:	4b25      	ldr	r3, [pc, #148]	@ (8001a5c <CalculoPID+0x16c>)
  80019c6:	681b      	ldr	r3, [r3, #0]
- 80019c8:	4a24      	ldr	r2, [pc, #144]	@ (8001a5c <CalculoPID+0x16c>)
- 80019ca:	6812      	ldr	r2, [r2, #0]
- 80019cc:	4611      	mov	r1, r2
- 80019ce:	4618      	mov	r0, r3
- 80019d0:	f7fe ffea 	bl	80009a8 <__addsf3>
- 80019d4:	4603      	mov	r3, r0
- 80019d6:	461a      	mov	r2, r3
- 80019d8:	4b23      	ldr	r3, [pc, #140]	@ (8001a68 <CalculoPID+0x178>)
- 80019da:	681b      	ldr	r3, [r3, #0]
- 80019dc:	4619      	mov	r1, r3
- 80019de:	4610      	mov	r0, r2
- 80019e0:	f7fe ffe2 	bl	80009a8 <__addsf3>
- 80019e4:	4603      	mov	r3, r0
- 80019e6:	461a      	mov	r2, r3
- 80019e8:	4b20      	ldr	r3, [pc, #128]	@ (8001a6c <CalculoPID+0x17c>)
- 80019ea:	601a      	str	r2, [r3, #0]
-	if(u>500.0) { u=500.0; } // condi��o Antiwindup
- 80019ec:	4b1f      	ldr	r3, [pc, #124]	@ (8001a6c <CalculoPID+0x17c>)
- 80019ee:	681b      	ldr	r3, [r3, #0]
- 80019f0:	491f      	ldr	r1, [pc, #124]	@ (8001a70 <CalculoPID+0x180>)
- 80019f2:	4618      	mov	r0, r3
- 80019f4:	f7ff fa9c 	bl	8000f30 <__aeabi_fcmpgt>
- 80019f8:	4603      	mov	r3, r0
- 80019fa:	2b00      	cmp	r3, #0
- 80019fc:	d003      	beq.n	8001a06 <CalculoPID+0x116>
- 80019fe:	4b1b      	ldr	r3, [pc, #108]	@ (8001a6c <CalculoPID+0x17c>)
- 8001a00:	4a1b      	ldr	r2, [pc, #108]	@ (8001a70 <CalculoPID+0x180>)
- 8001a02:	601a      	str	r2, [r3, #0]
- 8001a04:	e014      	b.n	8001a30 <CalculoPID+0x140>
-	else if(u<-500.0){u=-500.0;}
- 8001a06:	4b19      	ldr	r3, [pc, #100]	@ (8001a6c <CalculoPID+0x17c>)
- 8001a08:	681b      	ldr	r3, [r3, #0]
- 8001a0a:	491a      	ldr	r1, [pc, #104]	@ (8001a74 <CalculoPID+0x184>)
- 8001a0c:	4618      	mov	r0, r3
- 8001a0e:	f7ff fa71 	bl	8000ef4 <__aeabi_fcmplt>
- 8001a12:	4603      	mov	r3, r0
- 8001a14:	2b00      	cmp	r3, #0
- 8001a16:	d003      	beq.n	8001a20 <CalculoPID+0x130>
- 8001a18:	4b14      	ldr	r3, [pc, #80]	@ (8001a6c <CalculoPID+0x17c>)
- 8001a1a:	4a16      	ldr	r2, [pc, #88]	@ (8001a74 <CalculoPID+0x184>)
- 8001a1c:	601a      	str	r2, [r3, #0]
- 8001a1e:	e007      	b.n	8001a30 <CalculoPID+0x140>
+ 80019c8:	4928      	ldr	r1, [pc, #160]	@ (8001a6c <CalculoPID+0x17c>)
+ 80019ca:	4618      	mov	r0, r3
+ 80019cc:	f7ff fab0 	bl	8000f30 <__aeabi_fcmpgt>
+ 80019d0:	4603      	mov	r3, r0
+ 80019d2:	2b00      	cmp	r3, #0
+ 80019d4:	d003      	beq.n	80019de <CalculoPID+0xee>
+ 80019d6:	4b21      	ldr	r3, [pc, #132]	@ (8001a5c <CalculoPID+0x16c>)
+ 80019d8:	4a24      	ldr	r2, [pc, #144]	@ (8001a6c <CalculoPID+0x17c>)
+ 80019da:	601a      	str	r2, [r3, #0]
+ 80019dc:	e014      	b.n	8001a08 <CalculoPID+0x118>
+	else if(ui<-500.0){ui=-500.0;}
+ 80019de:	4b1f      	ldr	r3, [pc, #124]	@ (8001a5c <CalculoPID+0x16c>)
+ 80019e0:	681b      	ldr	r3, [r3, #0]
+ 80019e2:	4923      	ldr	r1, [pc, #140]	@ (8001a70 <CalculoPID+0x180>)
+ 80019e4:	4618      	mov	r0, r3
+ 80019e6:	f7ff fa85 	bl	8000ef4 <__aeabi_fcmplt>
+ 80019ea:	4603      	mov	r3, r0
+ 80019ec:	2b00      	cmp	r3, #0
+ 80019ee:	d003      	beq.n	80019f8 <CalculoPID+0x108>
+ 80019f0:	4b1a      	ldr	r3, [pc, #104]	@ (8001a5c <CalculoPID+0x16c>)
+ 80019f2:	4a1f      	ldr	r2, [pc, #124]	@ (8001a70 <CalculoPID+0x180>)
+ 80019f4:	601a      	str	r2, [r3, #0]
+ 80019f6:	e007      	b.n	8001a08 <CalculoPID+0x118>
 		else
 		{
 		ui_ant = ui;
- 8001a20:	4b0e      	ldr	r3, [pc, #56]	@ (8001a5c <CalculoPID+0x16c>)
- 8001a22:	681b      	ldr	r3, [r3, #0]
- 8001a24:	4a0c      	ldr	r2, [pc, #48]	@ (8001a58 <CalculoPID+0x168>)
- 8001a26:	6013      	str	r3, [r2, #0]
+ 80019f8:	4b18      	ldr	r3, [pc, #96]	@ (8001a5c <CalculoPID+0x16c>)
+ 80019fa:	681b      	ldr	r3, [r3, #0]
+ 80019fc:	4a16      	ldr	r2, [pc, #88]	@ (8001a58 <CalculoPID+0x168>)
+ 80019fe:	6013      	str	r3, [r2, #0]
 		y_ant = ya;
- 8001a28:	4b05      	ldr	r3, [pc, #20]	@ (8001a40 <CalculoPID+0x150>)
- 8001a2a:	681b      	ldr	r3, [r3, #0]
- 8001a2c:	4a0d      	ldr	r2, [pc, #52]	@ (8001a64 <CalculoPID+0x174>)
- 8001a2e:	6013      	str	r3, [r2, #0]
+ 8001a00:	4b0f      	ldr	r3, [pc, #60]	@ (8001a40 <CalculoPID+0x150>)
+ 8001a02:	681b      	ldr	r3, [r3, #0]
+ 8001a04:	4a17      	ldr	r2, [pc, #92]	@ (8001a64 <CalculoPID+0x174>)
+ 8001a06:	6013      	str	r3, [r2, #0]
 		}
+	u = up+ui+ud;
+ 8001a08:	4b10      	ldr	r3, [pc, #64]	@ (8001a4c <CalculoPID+0x15c>)
+ 8001a0a:	681b      	ldr	r3, [r3, #0]
+ 8001a0c:	4a13      	ldr	r2, [pc, #76]	@ (8001a5c <CalculoPID+0x16c>)
+ 8001a0e:	6812      	ldr	r2, [r2, #0]
+ 8001a10:	4611      	mov	r1, r2
+ 8001a12:	4618      	mov	r0, r3
+ 8001a14:	f7fe ffc8 	bl	80009a8 <__addsf3>
+ 8001a18:	4603      	mov	r3, r0
+ 8001a1a:	461a      	mov	r2, r3
+ 8001a1c:	4b12      	ldr	r3, [pc, #72]	@ (8001a68 <CalculoPID+0x178>)
+ 8001a1e:	681b      	ldr	r3, [r3, #0]
+ 8001a20:	4619      	mov	r1, r3
+ 8001a22:	4610      	mov	r0, r2
+ 8001a24:	f7fe ffc0 	bl	80009a8 <__addsf3>
+ 8001a28:	4603      	mov	r3, r0
+ 8001a2a:	461a      	mov	r2, r3
+ 8001a2c:	4b11      	ldr	r3, [pc, #68]	@ (8001a74 <CalculoPID+0x184>)
+ 8001a2e:	601a      	str	r2, [r3, #0]
 	return u;
- 8001a30:	4b0e      	ldr	r3, [pc, #56]	@ (8001a6c <CalculoPID+0x17c>)
+ 8001a30:	4b10      	ldr	r3, [pc, #64]	@ (8001a74 <CalculoPID+0x184>)
  8001a32:	681b      	ldr	r3, [r3, #0]
 }
  8001a34:	4618      	mov	r0, r3
  8001a36:	370c      	adds	r7, #12
  8001a38:	46bd      	mov	sp, r7
  8001a3a:	bd90      	pop	{r4, r7, pc}
- 8001a3c:	2000022c 	.word	0x2000022c
+ 8001a3c:	20000230 	.word	0x20000230
  8001a40:	2000024c 	.word	0x2000024c
  8001a44:	20000238 	.word	0x20000238
  8001a48:	20000008 	.word	0x20000008
@@ -2968,12 +2970,12 @@ float CalculoPID(float setpoint, float PosMedida){
  8001a54:	2000000c 	.word	0x2000000c
  8001a58:	20000248 	.word	0x20000248
  8001a5c:	20000240 	.word	0x20000240
- 8001a60:	20000230 	.word	0x20000230
+ 8001a60:	20000010 	.word	0x20000010
  8001a64:	20000250 	.word	0x20000250
  8001a68:	2000023c 	.word	0x2000023c
- 8001a6c:	20000234 	.word	0x20000234
- 8001a70:	43fa0000 	.word	0x43fa0000
- 8001a74:	c3fa0000 	.word	0xc3fa0000
+ 8001a6c:	43fa0000 	.word	0x43fa0000
+ 8001a70:	c3fa0000 	.word	0xc3fa0000
+ 8001a74:	20000234 	.word	0x20000234
 
 08001a78 <Error_Handler>:
 /**
@@ -3202,7 +3204,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
  8001ba4:	40012400 	.word	0x40012400
  8001ba8:	40021000 	.word	0x40021000
  8001bac:	40010800 	.word	0x40010800
- 8001bb0:	200000b8 	.word	0x200000b8
+ 8001bb0:	200000bc 	.word	0x200000bc
  8001bb4:	40020008 	.word	0x40020008
 
 08001bb8 <HAL_TIM_Base_MspInit>:
@@ -3631,7 +3633,7 @@ void DMA1_Channel1_IRQHandler(void)
  8001d8a:	bf00      	nop
  8001d8c:	bd80      	pop	{r7, pc}
  8001d8e:	bf00      	nop
- 8001d90:	200000b8 	.word	0x200000b8
+ 8001d90:	200000bc 	.word	0x200000bc
 
 08001d94 <TIM2_IRQHandler>:
 
@@ -3655,7 +3657,7 @@ void TIM2_IRQHandler(void)
  8001d9e:	bf00      	nop
  8001da0:	bd80      	pop	{r7, pc}
  8001da2:	bf00      	nop
- 8001da4:	20000144 	.word	0x20000144
+ 8001da4:	20000148 	.word	0x20000148
 
 08001da8 <_sbrk>:
  *
@@ -3836,11 +3838,11 @@ LoopFillZerobss:
   ldr r0, =_sdata
  8001e54:	20000000 	.word	0x20000000
   ldr r1, =_edata
- 8001e58:	2000006c 	.word	0x2000006c
+ 8001e58:	20000070 	.word	0x20000070
   ldr r2, =_sidata
  8001e5c:	08005c18 	.word	0x08005c18
   ldr r2, =_sbss
- 8001e60:	2000006c 	.word	0x2000006c
+ 8001e60:	20000070 	.word	0x20000070
   ldr r4, =_ebss
  8001e64:	200003a4 	.word	0x200003a4
 
@@ -3962,9 +3964,9 @@ __weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
  8001ee6:	3708      	adds	r7, #8
  8001ee8:	46bd      	mov	sp, r7
  8001eea:	bd80      	pop	{r7, pc}
- 8001eec:	20000010 	.word	0x20000010
- 8001ef0:	20000018 	.word	0x20000018
- 8001ef4:	20000014 	.word	0x20000014
+ 8001eec:	20000014 	.word	0x20000014
+ 8001ef0:	2000001c 	.word	0x2000001c
+ 8001ef4:	20000018 	.word	0x20000018
 
 08001ef8 <HAL_IncTick>:
   * @note This function is declared as __weak to be overwritten in case of other
@@ -3989,7 +3991,7 @@ __weak void HAL_IncTick(void)
  8001f0e:	46bd      	mov	sp, r7
  8001f10:	bc80      	pop	{r7}
  8001f12:	4770      	bx	lr
- 8001f14:	20000018 	.word	0x20000018
+ 8001f14:	2000001c 	.word	0x2000001c
  8001f18:	20000258 	.word	0x20000258
 
 08001f1c <HAL_GetTick>:
@@ -4062,7 +4064,7 @@ __weak void HAL_Delay(uint32_t Delay)
  8001f6e:	46bd      	mov	sp, r7
  8001f70:	bd80      	pop	{r7, pc}
  8001f72:	bf00      	nop
- 8001f74:	20000018 	.word	0x20000018
+ 8001f74:	2000001c 	.word	0x2000001c
 
 08001f78 <HAL_ADC_Init>:
   *         of structure "ADC_InitTypeDef".
@@ -5192,7 +5194,7 @@ HAL_StatusTypeDef HAL_ADC_ConfigChannel(ADC_HandleTypeDef* hadc, ADC_ChannelConf
  8002554:	bc80      	pop	{r7}
  8002556:	4770      	bx	lr
  8002558:	40012400 	.word	0x40012400
- 800255c:	20000010 	.word	0x20000010
+ 800255c:	20000014 	.word	0x20000014
  8002560:	431bde83 	.word	0x431bde83
 
 08002564 <ADC_Enable>:
@@ -5328,7 +5330,7 @@ HAL_StatusTypeDef ADC_Enable(ADC_HandleTypeDef* hadc)
  800260a:	46bd      	mov	sp, r7
  800260c:	bd80      	pop	{r7, pc}
  800260e:	bf00      	nop
- 8002610:	20000010 	.word	0x20000010
+ 8002610:	20000014 	.word	0x20000014
  8002614:	431bde83 	.word	0x431bde83
 
 08002618 <ADC_ConversionStop_Disable>:
@@ -5861,7 +5863,7 @@ HAL_StatusTypeDef HAL_ADCEx_Calibration_Start(ADC_HandleTypeDef* hadc)
  80028ba:	46bd      	mov	sp, r7
  80028bc:	bd90      	pop	{r4, r7, pc}
  80028be:	bf00      	nop
- 80028c0:	20000010 	.word	0x20000010
+ 80028c0:	20000014 	.word	0x20000014
 
 080028c4 <__NVIC_SetPriorityGrouping>:
            In case of a conflict between priority grouping and available
@@ -8670,8 +8672,8 @@ if (((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK
  80038a8:	40022000 	.word	0x40022000
  80038ac:	40021000 	.word	0x40021000
  80038b0:	08005b94 	.word	0x08005b94
- 80038b4:	20000010 	.word	0x20000010
- 80038b8:	20000014 	.word	0x20000014
+ 80038b4:	20000014 	.word	0x20000014
+ 80038b8:	20000018 	.word	0x20000018
 
 080038bc <HAL_RCC_GetSysClockFreq>:
   *         right SYSCLK value. Otherwise, any configuration based on this function will be incorrect.
@@ -8825,7 +8827,7 @@ uint32_t HAL_RCC_GetHCLKFreq(void)
  800396e:	46bd      	mov	sp, r7
  8003970:	bc80      	pop	{r7}
  8003972:	4770      	bx	lr
- 8003974:	20000010 	.word	0x20000010
+ 8003974:	20000014 	.word	0x20000014
 
 08003978 <HAL_RCC_GetPCLK1Freq>:
   * @note   Each time PCLK1 changes, this function must be called to update the
@@ -8917,7 +8919,7 @@ static void RCC_Delay(uint32_t mdelay)
  80039f6:	46bd      	mov	sp, r7
  80039f8:	bc80      	pop	{r7}
  80039fa:	4770      	bx	lr
- 80039fc:	20000010 	.word	0x20000010
+ 80039fc:	20000014 	.word	0x20000014
  8003a00:	10624dd3 	.word	0x10624dd3
 
 08003a04 <HAL_RCCEx_PeriphCLKConfig>:
@@ -13313,7 +13315,7 @@ static void UART_SetConfig(UART_HandleTypeDef *huart)
  800519a:	b003      	add	sp, #12
  800519c:	4770      	bx	lr
  800519e:	bf00      	nop
- 80051a0:	2000001c 	.word	0x2000001c
+ 80051a0:	20000020 	.word	0x20000020
  80051a4:	ffff0208 	.word	0xffff0208
 
 080051a8 <memset>:
@@ -13330,7 +13332,7 @@ static void UART_SetConfig(UART_HandleTypeDef *huart)
  80051ba:	6818      	ldr	r0, [r3, #0]
  80051bc:	4770      	bx	lr
  80051be:	bf00      	nop
- 80051c0:	2000001c 	.word	0x2000001c
+ 80051c0:	20000020 	.word	0x20000020
 
 080051c4 <__libc_init_array>:
  80051c4:	b570      	push	{r4, r5, r6, lr}

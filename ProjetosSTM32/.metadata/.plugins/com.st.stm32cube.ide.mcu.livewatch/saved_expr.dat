@@ -1,7 +1,5 @@
-PWM_Forward
-voltPedal1
-voltPedal2
-voltPotBorboleta1
-voltPotBorboleta2
-PorcBorboleta
-PorcPedal
+mV_Lambda
+VoltLambda
+FatorLambda
+adc_value
+adc_value_Pont

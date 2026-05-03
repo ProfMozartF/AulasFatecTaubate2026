@@ -3964,3 +3964,672 @@ arm-none-eabi-size  CorpoBorboleta_Pedal.elf
   23572	    108	   2364	  26044	   65bc	CorpoBorboleta_Pedal.elf
 Finished building: default.size.stdout
  
+15:35:34 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:214:29: warning: implicit declaration of function 'CalculoPID' [-Wimplicit-function-declaration]
+  214 |          float pwmPercent = CalculoPID(RefPosBorboleta,PorcBorboleta);
+      |                             ^~~~~~~~~~
+arm-none-eabi-gcc -o "CorpoBorboleta_Pedal.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\CorpoBorboleta_Pedal\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CorpoBorboleta_Pedal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+C:/GIT/Aulas2026_1/ProjetosSTM32/CorpoBorboleta_Pedal/Debug/../Core/Src/main.c:214:(.text.main+0x1cc): undefined reference to `CalculoPID'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: CorpoBorboleta_Pedal.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+15:36:04 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CorpoBorboleta_Pedal.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\CorpoBorboleta_Pedal\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CorpoBorboleta_Pedal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CorpoBorboleta_Pedal.elf
+ 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+arm-none-eabi-objdump -h -S CorpoBorboleta_Pedal.elf  > "CorpoBorboleta_Pedal.list"
+   text	   data	    bss	    dec	    hex	filename
+  23436	     96	   2336	  25868	   650c	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+Finished building: CorpoBorboleta_Pedal.list
+ 
+15:36:15 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23436	     96	   2336	  25868	   650c	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+15:39:13 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CorpoBorboleta_Pedal.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\CorpoBorboleta_Pedal\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CorpoBorboleta_Pedal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CorpoBorboleta_Pedal.elf
+ 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+arm-none-eabi-objdump -h -S CorpoBorboleta_Pedal.elf  > "CorpoBorboleta_Pedal.list"
+   text	   data	    bss	    dec	    hex	filename
+  23488	    112	   2336	  25936	   6550	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+Finished building: CorpoBorboleta_Pedal.list
+ 
+15:39:25 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23488	    112	   2336	  25936	   6550	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+16:08:35 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'PID_Incremental':
+../Core/Src/main.c:643:11: warning: variable 'kd' set but not used [-Wunused-but-set-variable]
+  643 |     float kd = 0.0;
+      |           ^~
+../Core/Src/main.c:642:11: warning: variable 'ki' set but not used [-Wunused-but-set-variable]
+  642 |     float ki =0.0;
+      |           ^~
+arm-none-eabi-gcc -o "CorpoBorboleta_Pedal.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\CorpoBorboleta_Pedal\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CorpoBorboleta_Pedal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CorpoBorboleta_Pedal.elf
+ 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+arm-none-eabi-objdump -h -S CorpoBorboleta_Pedal.elf  > "CorpoBorboleta_Pedal.list"
+   text	   data	    bss	    dec	    hex	filename
+  23472	    112	   2336	  25920	   6540	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+Finished building: CorpoBorboleta_Pedal.list
+ 
+16:09:34 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'PID_Incremental':
+../Core/Src/main.c:649:15: error: redefinition of 'delta_u'
+  649 |         float delta_u = kp+ki+kd;
+      |               ^~~~~~~
+../Core/Src/main.c:645:11: note: previous definition of 'delta_u' with type 'float'
+  645 |     float delta_u =
+      |           ^~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+16:09:49 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CorpoBorboleta_Pedal.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\CorpoBorboleta_Pedal\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CorpoBorboleta_Pedal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CorpoBorboleta_Pedal.elf
+ 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+arm-none-eabi-objdump -h -S CorpoBorboleta_Pedal.elf  > "CorpoBorboleta_Pedal.list"
+   text	   data	    bss	    dec	    hex	filename
+  23492	    112	   2336	  25940	   6554	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+Finished building: CorpoBorboleta_Pedal.list
+ 
+16:10:06 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23492	    112	   2336	  25940	   6554	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+16:37:14 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CorpoBorboleta_Pedal.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\CorpoBorboleta_Pedal\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CorpoBorboleta_Pedal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CorpoBorboleta_Pedal.elf
+ 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+arm-none-eabi-objdump -h -S CorpoBorboleta_Pedal.elf  > "CorpoBorboleta_Pedal.list"
+   text	   data	    bss	    dec	    hex	filename
+  23572	    108	   2364	  26044	   65bc	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+Finished building: CorpoBorboleta_Pedal.list
+ 
+16:37:28 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23572	    108	   2364	  26044	   65bc	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+16:44:01 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CorpoBorboleta_Pedal.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\CorpoBorboleta_Pedal\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CorpoBorboleta_Pedal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CorpoBorboleta_Pedal.elf
+ 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+arm-none-eabi-objdump -h -S CorpoBorboleta_Pedal.elf  > "CorpoBorboleta_Pedal.list"
+   text	   data	    bss	    dec	    hex	filename
+  23612	    108	   2364	  26084	   65e4	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+Finished building: CorpoBorboleta_Pedal.list
+ 
+16:44:09 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23612	    108	   2364	  26084	   65e4	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+17:17:42 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CorpoBorboleta_Pedal.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\CorpoBorboleta_Pedal\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CorpoBorboleta_Pedal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CorpoBorboleta_Pedal.elf
+ 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+arm-none-eabi-objdump -h -S CorpoBorboleta_Pedal.elf  > "CorpoBorboleta_Pedal.list"
+   text	   data	    bss	    dec	    hex	filename
+  23588	    108	   2364	  26060	   65cc	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+Finished building: CorpoBorboleta_Pedal.list
+ 
+17:17:49 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23588	    108	   2364	  26060	   65cc	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+17:40:46 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CorpoBorboleta_Pedal.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\CorpoBorboleta_Pedal\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CorpoBorboleta_Pedal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CorpoBorboleta_Pedal.elf
+ 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+arm-none-eabi-objdump -h -S CorpoBorboleta_Pedal.elf  > "CorpoBorboleta_Pedal.list"
+   text	   data	    bss	    dec	    hex	filename
+  23572	    108	   2364	  26044	   65bc	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+Finished building: CorpoBorboleta_Pedal.list
+ 
+17:41:00 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23572	    108	   2364	  26044	   65bc	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+18:18:40 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CorpoBorboleta_Pedal.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\CorpoBorboleta_Pedal\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CorpoBorboleta_Pedal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CorpoBorboleta_Pedal.elf
+ 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+arm-none-eabi-objdump -h -S CorpoBorboleta_Pedal.elf  > "CorpoBorboleta_Pedal.list"
+   text	   data	    bss	    dec	    hex	filename
+  23572	    108	   2364	  26044	   65bc	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+Finished building: CorpoBorboleta_Pedal.list
+ 
+18:18:48 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23572	    108	   2364	  26044	   65bc	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+21:38:33 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CorpoBorboleta_Pedal.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\CorpoBorboleta_Pedal\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CorpoBorboleta_Pedal.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CorpoBorboleta_Pedal.elf
+ 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+arm-none-eabi-objdump -h -S CorpoBorboleta_Pedal.elf  > "CorpoBorboleta_Pedal.list"
+   text	   data	    bss	    dec	    hex	filename
+  23572	    112	   2360	  26044	   65bc	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
+Finished building: CorpoBorboleta_Pedal.list
+ 
+18:54:00 **** Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o"
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32f103c6tx.d" -MT"Core/Startup/startup_stm32f103c6tx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Startup/startup_stm32f103c6tx.o" "../Core/Startup/startup_stm32f103c6tx.s"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_hal_msp.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_hal_msp.d" -MT"Core/Src/stm32f1xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32f1xx.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32f1xx.d" -MT"Core/Src/system_stm32f1xx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/system_stm32f1xx.o"
+../Core/Src/stm32f1xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Src/stm32f1xx_it.c:223:23: error: 'htim3' undeclared (first use in this function); did you mean 'htim2'?
+  223 |   HAL_TIM_IRQHandler(&htim3);
+      |                       ^~~~~
+      |                       htim2
+../Core/Src/stm32f1xx_it.c:223:23: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/stm32f1xx_it.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+18:55:22 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_hal_msp.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_hal_msp.d" -MT"Core/Src/stm32f1xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  16404	     16	   1936	  18356	   47b4	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+18:56:25 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  16404	     16	   1936	  18356	   47b4	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+18:57:27 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16404	     16	   1936	  18356	   47b4	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+19:01:00 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:144:38: error: invalid operands to binary * (have 'volatile uint32_t *' {aka 'volatile long unsigned int *'} and 'int')
+  144 |           mV_Lambda = &adc_value_Filt*(3300/4095);
+      |                       ~~~~~~~~~~~~~~~^
+      |                       |
+      |                       volatile uint32_t * {aka volatile long unsigned int *}
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+19:01:28 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:144:40: error: invalid operands to binary * (have 'volatile uint32_t *' {aka 'volatile long unsigned int *'} and 'int')
+  144 |           mV_Lambda = (&adc_value_Filt)*(3300/4095);
+      |                       ~~~~~~~~~~~~~~~~~^
+      |                        |
+      |                        volatile uint32_t * {aka volatile long unsigned int *}
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+19:08:11 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  16404	     16	   1936	  18356	   47b4	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:08:20 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16404	     16	   1936	  18356	   47b4	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+19:09:44 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:531:24: warning: assignment discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  531 |         adc_value_Pont = &adc_value;
+      |                        ^
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  16396	     16	   1936	  18348	   47ac	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:09:54 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16396	     16	   1936	  18348	   47ac	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+19:13:21 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:531:24: warning: assignment discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  531 |         adc_value_Pont = &adc_value;
+      |                        ^
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  16408	     16	   1936	  18360	   47b8	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:13:37 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16408	     16	   1936	  18360	   47b8	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+19:15:08 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:531:24: warning: assignment discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  531 |         adc_value_Pont = &adc_value;
+      |                        ^
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  17996	     16	   1936	  19948	   4dec	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:15:39 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:531:24: warning: assignment discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  531 |         adc_value_Pont = &adc_value;
+      |                        ^
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  17996	     16	   1936	  19948	   4dec	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:16:26 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  17996	     16	   1936	  19948	   4dec	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:16:39 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17996	     16	   1936	  19948	   4dec	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+19:18:19 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  18176	     16	   1936	  20128	   4ea0	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:18:28 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+   text	   data	    bss	    dec	    hex	filename
+  18176	     16	   1936	  20128	   4ea0	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+19:22:18 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  18152	     16	   1936	  20104	   4e88	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:22:27 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+   text	   data	    bss	    dec	    hex	filename
+  18152	     16	   1936	  20104	   4e88	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+19:24:35 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:537:38: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  537 |           HAL_UART_Transmit(&huart1, *mensagem, 4, 10);
+      |                                      ^~~~~~~~~
+      |                                      |
+      |                                      uint8_t {aka unsigned char}
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:749:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  749 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  18180	     16	   1936	  20132	   4ea4	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:25:08 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+   text	   data	    bss	    dec	    hex	filename
+  18180	     16	   1936	  20132	   4ea4	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+19:27:26 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:537:38: warning: passing argument 2 of 'HAL_UART_Transmit' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  537 |           HAL_UART_Transmit(&huart1, mensagem, 4, 10);
+      |                                      ^~~~~~~~
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:749:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
+  749 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:538:37: error: 'GPIO_Pin13' undeclared (first use in this function); did you mean 'GPIO_PIN_3'?
+  538 |           HAL_GPIO_TogglePin(GPIOC, GPIO_Pin13);
+      |                                     ^~~~~~~~~~
+      |                                     GPIO_PIN_3
+../Core/Src/main.c:538:37: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+19:27:59 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:537:38: warning: passing argument 2 of 'HAL_UART_Transmit' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  537 |           HAL_UART_Transmit(&huart1, mensagem, 4, 10);
+      |                                      ^~~~~~~~
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:749:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
+  749 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:538:37: error: 'GPIO_Pin_13' undeclared (first use in this function); did you mean 'GPIO_PIN_13'?
+  538 |           HAL_GPIO_TogglePin(GPIOC, GPIO_Pin_13);
+      |                                     ^~~~~~~~~~~
+      |                                     GPIO_PIN_13
+../Core/Src/main.c:538:37: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+19:28:25 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:537:38: warning: passing argument 2 of 'HAL_UART_Transmit' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  537 |           HAL_UART_Transmit(&huart1, mensagem, 4, 10);
+      |                                      ^~~~~~~~
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:749:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
+  749 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  18244	     16	   1936	  20196	   4ee4	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:28:46 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:537:38: warning: passing argument 2 of 'HAL_UART_Transmit' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  537 |           HAL_UART_Transmit(&huart1, mensagem, 4, 10);
+      |                                      ^~~~~~~~
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:749:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
+  749 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  18244	     16	   1936	  20196	   4ee4	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:34:51 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:162:44: warning: passing argument 2 of 'HAL_UART_Transmit' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  162 |                 HAL_UART_Transmit(&huart1, mensagem, 4, 10);
+      |                                            ^~~~~~~~
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:749:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
+  749 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  18216	     16	   1936	  20168	   4ec8	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:35:23 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  18216	     16	   1936	  20168	   4ec8	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+19:40:56 **** Incremental Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  18172	     16	   1936	  20124	   4e9c	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
