@@ -4633,3 +4633,24 @@ Finished building: default.size.stdout
  
 Finished building: LEITOR_SONDA_LAMBDA.list
  
+21:45:23 **** Build of configuration Debug for project LEITOR_SONDA_LAMBDA ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "LEITOR_SONDA_LAMBDA.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\GIT\Aulas2026_1\ProjetosSTM32\LEITOR_SONDA_LAMBDA\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LEITOR_SONDA_LAMBDA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LEITOR_SONDA_LAMBDA.elf
+ 
+arm-none-eabi-size  LEITOR_SONDA_LAMBDA.elf 
+arm-none-eabi-objdump -h -S LEITOR_SONDA_LAMBDA.elf  > "LEITOR_SONDA_LAMBDA.list"
+   text	   data	    bss	    dec	    hex	filename
+  18152	     16	   1936	  20104	   4e88	LEITOR_SONDA_LAMBDA.elf
+Finished building: default.size.stdout
+ 
+Finished building: LEITOR_SONDA_LAMBDA.list
+ 
+22:15:01 **** Incremental Build of configuration Debug for project CorpoBorboleta_Pedal ****
+make -j8 all 
+arm-none-eabi-size  CorpoBorboleta_Pedal.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23572	    112	   2360	  26044	   65bc	CorpoBorboleta_Pedal.elf
+Finished building: default.size.stdout
+ 
